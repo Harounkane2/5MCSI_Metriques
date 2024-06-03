@@ -15,10 +15,14 @@
           var dataTable = new google.visualization.DataTable();
           dataTable.addColumn('string', 'Date');
           dataTable.addColumn('number', 'Valeur');
+          dataTable.addColumn({ type: 'string', role: 'style' });  // Ajout d'une colonne de style
+
           data.results.forEach(entry => {
             var date = new Date(entry.Jour * 1000);
-            dataTable.addRow([date.toLocaleDateString(), entry.temp]);
+            var color = entry.temp > 12 ? 'red' : 'blue';  // Définir la couleur en fonction de la température
+            dataTable.addRow([date.toLocaleDateString(), entry.temp, `color: ${color}`]);
           });
+
           // Configurer les options du graphique en histogramme
           var options = {
             title: 'Évolution des températures de la ville de Tawarano',
