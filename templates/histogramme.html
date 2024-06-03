@@ -3,9 +3,38 @@
     <meta charset="UTF-8" />
     <title>Metrique</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <style>
+      .legend {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+      }
+      .legend div {
+        display: flex;
+        align-items: center;
+        margin-right: 15px;
+      }
+      .legend div span {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin-right: 5px;
+      }
+      .legend .red {
+        background-color: red;
+      }
+      .legend .blue {
+        background-color: blue;
+      }
+    </style>
   </head>
   <body>
     <div id="chart_div"></div>
+    <div class="legend">
+      <div><span class="red"></span>Température > 12°C</div>
+      <div><span class="blue"></span>Température ≤ 12°C</div>
+    </div>
     <script>
       google.charts.load('current', { packages: ['corechart'] });
       google.charts.setOnLoadCallback(drawBackgroundColor);
@@ -26,7 +55,7 @@
           // Configurer les options du graphique en histogramme
           var options = {
             title: 'Évolution des températures de la ville de Tawarano',
-            legend: { position: 'bottom' },
+            legend: { position: 'none' },
             hAxis: {
               title: 'Date'
             },
